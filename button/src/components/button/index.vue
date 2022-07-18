@@ -3,6 +3,7 @@
     class="wang-button"
     :class="[theme, isRound, isBorder, isSize]"
     :disabled="disabled"
+    :style="[isMinWidth]"
   >
     <slot></slot>
   </div>
@@ -20,6 +21,10 @@ export default {
       type: String,
       default: ''
     },
+    minWidth: {
+      type: String,
+      default: '95px'
+    },
     round: Boolean,
     border: Boolean,
     disabled: Boolean
@@ -35,8 +40,11 @@ export default {
       return this.border ? 'is-border' : ''
     },
     isSize() {
-      console.log(this.size)
       return this.size ? `wang-button-${this.size}` : ''
+    },
+    isMinWidth() {
+      if (!this.minWidth) return ''
+      return { 'min-width': this.minWidth }
     }
   }
 }
@@ -49,6 +57,7 @@ export default {
   border-color: #dcdfe6;
   height: 40px;
   line-height: 40px;
+  text-align: center;
   padding: 0 20px;
   background-color: #fff;
   border-radius: 4px;
