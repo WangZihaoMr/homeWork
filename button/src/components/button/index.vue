@@ -1,7 +1,7 @@
 <template>
   <div
     class="wang-button"
-    :class="[theme, isRound, isBorder, isSize]"
+    :class="[theme, isRound, isBorder, isSize, isBlock]"
     :disabled="disabled"
     :style="[isMinWidth]"
   >
@@ -27,7 +27,8 @@ export default {
     },
     round: Boolean,
     border: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    block: Boolean
   },
   computed: {
     theme() {
@@ -45,6 +46,10 @@ export default {
     isMinWidth() {
       if (!this.minWidth) return ''
       return { 'min-width': this.minWidth }
+    },
+    isBlock() {
+      if (!this.block) return ''
+      return this.block ? 'wang-button-block' : ''
     }
   }
 }
@@ -133,5 +138,11 @@ export default {
   height: 28px;
   line-height: 28px;
   font-size: 12px;
+}
+.wang-button-block {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
 }
 </style>
