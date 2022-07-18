@@ -2,7 +2,7 @@
   <button
     class="wang-button"
     :class="[theme, isRound, isBorder, isSize, isBlock]"
-    :disabled="disabled"
+    :disabled="disabled || loading"
     :style="[isMinWidth]"
     @click="chnage"
   >
