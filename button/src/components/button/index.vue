@@ -1,5 +1,5 @@
 <template>
-  <div class="wang-button wang-button-danger">
+  <div class="wang-button wang-button-danger is-border is-round" disabled>
     <slot></slot>
   </div>
 </template>
@@ -75,5 +75,12 @@ export default {
     background-color: transparent;
     color: #f56c6c;
   }
+}
+.is-round {
+  border-radius: 100px;
+}
+.wang-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>
