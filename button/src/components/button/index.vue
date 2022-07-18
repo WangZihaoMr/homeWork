@@ -1,5 +1,9 @@
 <template>
-  <div class="wang-button" :class="[theme]">
+  <div
+    class="wang-button"
+    :class="[theme, isRound, isBorder]"
+    :disabled="disabled"
+  >
     <slot></slot>
   </div>
 </template>
@@ -11,11 +15,20 @@ export default {
     type: {
       type: String,
       default: ''
-    }
+    },
+    round: Boolean,
+    border: Boolean,
+    disabled: Boolean
   },
   computed: {
     theme() {
       return this.type ? `wang-button-${this.type}` : ''
+    },
+    isRound() {
+      return this.round ? 'is-round' : ''
+    },
+    isBorder() {
+      return this.border ? 'is-border' : ''
     }
   }
 }
