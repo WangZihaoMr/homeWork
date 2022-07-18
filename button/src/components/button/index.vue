@@ -1,7 +1,7 @@
 <template>
   <div
     class="wang-button"
-    :class="[theme, isRound, isBorder]"
+    :class="[theme, isRound, isBorder, isSize]"
     :disabled="disabled"
   >
     <slot></slot>
@@ -13,6 +13,10 @@ export default {
   name: 'buttonView',
   props: {
     type: {
+      type: String,
+      default: ''
+    },
+    size: {
       type: String,
       default: ''
     },
@@ -29,6 +33,10 @@ export default {
     },
     isBorder() {
       return this.border ? 'is-border' : ''
+    },
+    isSize() {
+      console.log(this.size)
+      return this.size ? `wang-button-${this.size}` : ''
     }
   }
 }
@@ -100,5 +108,21 @@ export default {
 .wang-button[disabled] {
   cursor: not-allowed;
   opacity: 0.5;
+}
+.wang-button-medium {
+  height: 38px;
+  line-height: 38px;
+}
+.wang-button-small {
+  padding: 0 20px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+}
+.wang-button-mini {
+  padding: 0 20px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 12px;
 }
 </style>
