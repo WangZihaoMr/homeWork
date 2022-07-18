@@ -5,7 +5,11 @@
     :disabled="disabled"
     :style="[isMinWidth]"
   >
-    <slot></slot>
+    <span
+      ><i v-if="prefix" class="iconfont icon-prefix" :class="iconPrefix"></i>
+      <slot></slot>
+      <i v-if="suffix" class="iconfont icon-suffix" :class="iconSuffix"></i
+    ></span>
   </div>
 </template>
 
@@ -24,6 +28,14 @@ export default {
     minWidth: {
       type: String,
       default: '95px'
+    },
+    prefix: {
+      type: String,
+      default: ''
+    },
+    suffix: {
+      type: String,
+      default: ''
     },
     round: Boolean,
     border: Boolean,
@@ -50,6 +62,14 @@ export default {
     isBlock() {
       if (!this.block) return ''
       return this.block ? 'wang-button-block' : ''
+    },
+    iconPrefix() {
+      console.log(this.prefix)
+      return this.prefix ? `icon-${this.prefix}` : ''
+    },
+    iconSuffix() {
+      console.log(this.suffix)
+      return this.suffix ? `icon-${this.suffix}` : ''
     }
   }
 }
@@ -74,11 +94,11 @@ export default {
     margin-bottom: 10px;
   }
 
-  // > span {
-  //   display: inline-flex;
-  //   align-items: center;
-  //   justify-content: center;
-  // }
+  > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .wang-button-primary {
   background-color: #409eff;
@@ -144,5 +164,11 @@ export default {
   width: 100%;
   padding: 0;
   margin-bottom: 0;
+}
+.icon-prefix {
+  margin-right: 10px;
+}
+.icon-suffix {
+  margin-left: 10px;
 }
 </style>
