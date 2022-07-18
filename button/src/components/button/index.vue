@@ -1,5 +1,5 @@
 <template>
-  <div class="wang-button wang-button-danger is-border is-round" disabled>
+  <div class="wang-button" :class="[theme]">
     <slot></slot>
   </div>
 </template>
@@ -7,12 +7,17 @@
 <script>
 export default {
   name: 'buttonView',
-  components: {},
-  data() {
-    return {}
+  props: {
+    type: {
+      type: String,
+      default: ''
+    }
   },
-  created() {},
-  methods: {}
+  computed: {
+    theme() {
+      return this.type ? `wang-button-${this.type}` : ''
+    }
+  }
 }
 </script>
 <style scoped lang="scss">
