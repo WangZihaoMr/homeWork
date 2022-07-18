@@ -1,16 +1,18 @@
 <template>
-  <div
+  <button
     class="wang-button"
     :class="[theme, isRound, isBorder, isSize, isBlock]"
     :disabled="disabled"
     :style="[isMinWidth]"
+    @click="chnage"
   >
-    <span
-      ><i v-if="prefix" class="iconfont icon-prefix" :class="iconPrefix"></i>
+    <span>
+      <i v-if="loading" class="iconfont icon-prefix icon-loading"></i>
+      <i v-if="prefix" class="iconfont icon-prefix" :class="iconPrefix"></i>
       <slot></slot>
       <i v-if="suffix" class="iconfont icon-suffix" :class="iconSuffix"></i
     ></span>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -40,7 +42,8 @@ export default {
     round: Boolean,
     border: Boolean,
     disabled: Boolean,
-    block: Boolean
+    block: Boolean,
+    loading: Boolean
   },
   computed: {
     theme() {
@@ -64,12 +67,19 @@ export default {
       return this.block ? 'wang-button-block' : ''
     },
     iconPrefix() {
-      console.log(this.prefix)
       return this.prefix ? `icon-${this.prefix}` : ''
     },
     iconSuffix() {
-      console.log(this.suffix)
       return this.suffix ? `icon-${this.suffix}` : ''
+    },
+    iconLoading() {
+      console.log(this.loading)
+      return this.loading ? `icon-${this.loading}` : ''
+    }
+  },
+  methods: {
+    chnage() {
+      this.$emit('loadingClick')
     }
   }
 }
@@ -100,6 +110,7 @@ export default {
     justify-content: center;
   }
 }
+// 主题类型
 .wang-button-primary {
   background-color: #409eff;
   border-color: #409eff;
@@ -136,13 +147,16 @@ export default {
     color: #f56c6c;
   }
 }
+// 圆角边框
 .is-round {
   border-radius: 100px;
 }
+// 禁用属性
 .wang-button[disabled] {
   cursor: not-allowed;
   opacity: 0.5;
 }
+// size button的大小
 .wang-button-medium {
   height: 38px;
   line-height: 38px;
@@ -159,16 +173,30 @@ export default {
   line-height: 28px;
   font-size: 12px;
 }
+// 块级元素
 .wang-button-block {
   display: block;
   width: 100%;
   padding: 0;
   margin-bottom: 0;
 }
+// 图标左右外间距
 .icon-prefix {
   margin-right: 10px;
 }
 .icon-suffix {
   margin-left: 10px;
+}
+// loading动画
+.icon-loading {
+  animation: loading 2s infinite linear;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
