@@ -10,6 +10,15 @@ export default {
   data() {
     return {
       cloumns: [
+        {
+          prop: 'title',
+          label: '标题',
+          width: '180',
+          type: 'function',
+          callback: (row) => {
+            return `${row.title}`
+          }
+        },
         { prop: 'date', label: '日期', width: '180' },
         { prop: 'name', label: '姓名', width: '180' },
         { prop: 'address', label: '地址', width: '200' },
