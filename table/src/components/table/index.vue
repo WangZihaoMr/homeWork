@@ -51,44 +51,20 @@ export default {
       default: () => []
     },
     selection: Boolean,
-    index: Boolean
+    index: Boolean,
+    url: {
+      type: String,
+      default: '',
+      required: true
+    },
+    method: {
+      type: String,
+      default: 'GET'
+    }
   },
   data() {
     return {
-      tableData: [
-        {
-          id: '1',
-          title: '<a href="https://www.baidu.com">去百度</a>',
-          date: '2016-05-02',
-          name: '王小虎',
-          gender: '男',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },
-        {
-          id: '2',
-          title: '<a href="https://www.baidu.com">去百度</a>',
-          date: '2016-05-04',
-          name: '王小虎',
-          gender: '男',
-          address: '上海市普陀区金沙江路 1517 弄'
-        },
-        {
-          id: '3',
-          title: '<a href="https://www.baidu.com">去百度</a>',
-          date: '2016-05-01',
-          name: '王小虎',
-          gender: '男',
-          address: '上海市普陀区金沙江路 1519 弄'
-        },
-        {
-          id: '4',
-          title: '<a href="https://www.baidu.com">去百度</a>',
-          date: '2016-05-03',
-          name: '王小虎',
-          gender: '男',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }
-      ]
+      tableData: []
     }
   },
   created() {
@@ -96,11 +72,23 @@ export default {
   },
   methods: {
     async loadGetData() {
-      const res = await this.$axios({
-        url: '/name/',
-        method: 'POST'
-      })
-      console.log(res)
+      // 监控报错
+      if (!this.url) {
+        throw new Error('url is required')
+        return false
+      }
+
+      try {
+        // 发送请求
+        const res = await this.$axios({
+          url: this.url,
+          method: this.method
+        })
+        console.log(res)
+        this.tableData = res.data.data
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
