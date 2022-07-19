@@ -91,8 +91,18 @@ export default {
       ]
     }
   },
-  created() {},
-  methods: {}
+  created() {
+    this.loadGetData()
+  },
+  methods: {
+    async loadGetData() {
+      const res = await this.$axios({
+        url: '/name/',
+        method: 'POST'
+      })
+      console.log(res)
+    }
+  }
 }
 </script>
 <style scoped lang="scss"></style>
