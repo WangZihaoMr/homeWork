@@ -23,8 +23,8 @@
           :label="item.label"
           :width="item.width"
         >
-          <template>
-            <slot :name="item.slot_name"></slot>
+          <template v-slot="scope">
+            <slot :name="item.slot_name" :data="scope.row"></slot>
           </template>
         </el-table-column>
         <el-table-column

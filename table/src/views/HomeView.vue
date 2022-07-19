@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <wang-table :cloumns="cloumns" selection index>
-      <template v-slot:operation>
+      <template v-slot:operation="scope">
+        {{ scope }}
         <el-button type="primary">编辑</el-button>
         <el-button type="danger">删除</el-button>
       </template>
