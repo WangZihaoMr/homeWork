@@ -1,10 +1,14 @@
 <template>
-  <div class="home"></div>
+  <div class="home">
+    <wang-table></wang-table>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'HomeView',
-  components: {}
+  components: {
+    wangTable: () => import('../components/table')
+  }
 }
 </script>
