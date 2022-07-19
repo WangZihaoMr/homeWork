@@ -11,6 +11,7 @@
       ref="tableRequestRef"
       onLoad
       @onLoad="onLoad"
+      :format="formatData"
     >
       <template v-slot:operation="row">
         <!-- {{ row.data }} -->
@@ -71,6 +72,11 @@ export default {
     // onLoad：子组件通过触发父组件的方法，进行数据回调
     onLoad(res) {
       console.log(res)
+    },
+    // 父组件数据格式化之后---->传给---->子组件
+    formatData(res) {
+      console.log('1', res.data)
+      return [res.data[0]]
     }
   }
 }

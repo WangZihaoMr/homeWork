@@ -70,7 +70,8 @@ export default {
       default: () => {}
     },
     initRequest: Boolean,
-    onLoad: Boolean
+    onLoad: Boolean,
+    format: Function
   },
   data() {
     return {
@@ -82,7 +83,7 @@ export default {
   },
   methods: {
     async loadGetData() {
-      // 监控报错
+      // 监控控制台报错
       if (!this.url) {
         throw new Error('url is required')
         return false
@@ -109,13 +110,21 @@ export default {
         console.log(res)
         this.tableData = res.data.data
 
+        // 数据回调给父组件，父组件处理完毕之后，再赋值给子组件
+        let data = res.data
+        if (this.format && typeof this.format === 'function') {
+          data = this.format(res.data)
+          console.log('123', data)
+        }
+        this.tableData = data
+
         // onLoad数据回调
         this.onLoad && this.$emit('onLoad', res)
       } catch (error) {
         console.log(error)
       }
     },
-    // 通过父组件调用子组件的方法
+    // 手动发送请求：通过父组件调用子组件的方法
     useInitRequest() {
       this.loadGetData()
     }
