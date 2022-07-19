@@ -76,7 +76,13 @@ export default {
     // 父组件数据格式化之后---->传给---->子组件
     formatData(res) {
       console.log('1', res.data)
-      return [res.data[0]]
+      const tableData = res.data
+      tableData.forEach((item) => {
+        item.gender = item.gender === '男' ? 1 : 0
+      })
+      console.log('4', tableData)
+      // return [res.data[0]]
+      return tableData
     }
   }
 }
