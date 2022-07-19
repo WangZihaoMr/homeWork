@@ -18,6 +18,16 @@
           </template>
         </el-table-column>
         <el-table-column
+          v-if="item.type === 'slot'"
+          :key="item.name"
+          :label="item.label"
+          :width="item.width"
+        >
+          <template>
+            <slot :name="item.slot_name"></slot>
+          </template>
+        </el-table-column>
+        <el-table-column
           v-else
           :key="item.prop"
           :prop="item.prop"

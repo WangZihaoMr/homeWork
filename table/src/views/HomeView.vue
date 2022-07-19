@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <wang-table :cloumns="cloumns" selection index></wang-table>
+    <wang-table :cloumns="cloumns" selection index>
+      <template v-slot:operation>
+        <el-button type="primary">编辑</el-button>
+        <el-button type="danger">删除</el-button>
+      </template>
+    </wang-table>
   </div>
 </template>
 
@@ -22,7 +27,14 @@ export default {
         { prop: 'date', label: '日期', width: '180' },
         { prop: 'name', label: '姓名', width: '180' },
         { prop: 'address', label: '地址', width: '200' },
-        { prop: 'gender', label: '性别', width: '80' }
+        { prop: 'gender', label: '性别', width: '80' },
+        {
+          prop: 'operation',
+          label: '操作',
+          type: 'slot',
+          slot_name: 'operation',
+          width: '260'
+        }
       ]
     }
   },
