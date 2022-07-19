@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <wangButton disabled min-width="80px"> a </wangButton>
+    <wangButton disabled min-width="80px" type="primary"> a </wangButton>
     <wangButton type="success"> 成功按钮 </wangButton>
     <wangButton
       :loading="loadingStatus"

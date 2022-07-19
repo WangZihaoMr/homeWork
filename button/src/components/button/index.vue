@@ -2,9 +2,10 @@
   <button
     class="wang-button"
     :class="[theme, isRound, isBorder, isSize, isBlock]"
-    :disabled="disabled || loading"
+    :disabled="disabled"
+    :loading="loading"
     :style="[isMinWidth]"
-    @click="chnage"
+    @click="change"
   >
     <span>
       <i v-if="loading" class="iconfont icon-prefix icon-loading"></i>
@@ -78,7 +79,7 @@ export default {
     }
   },
   methods: {
-    chnage() {
+    change() {
       this.$emit('loadingClick')
     }
   }
@@ -110,93 +111,6 @@ export default {
     justify-content: center;
   }
 }
-// 主题类型
-.wang-button-primary {
-  background-color: #409eff;
-  border-color: #409eff;
-  color: #fff;
-  &.is-border {
-    background-color: transparent;
-    color: #409eff;
-  }
-}
-.wang-button-success {
-  background-color: #00d100;
-  border-color: #00d100;
-  color: #fff;
-  &.is-border {
-    background-color: transparent;
-    color: #00d100;
-  }
-}
-.wang-button-warning {
-  background-color: #e6a23c;
-  border-color: #e6a23c;
-  color: #fff;
-  &.is-border {
-    background-color: transparent;
-    color: #e6a23c;
-  }
-}
-.wang-button-danger {
-  background-color: #f56c6c;
-  border-color: #f56c6c;
-  color: #fff;
-  &.is-border {
-    background-color: transparent;
-    color: #f56c6c;
-  }
-}
-// 圆角边框
-.is-round {
-  border-radius: 100px;
-}
-// 禁用属性
-.wang-button[disabled] {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-// size button的大小
-.wang-button-medium {
-  height: 38px;
-  line-height: 38px;
-}
-.wang-button-small {
-  padding: 0 20px;
-  height: 32px;
-  line-height: 32px;
-  font-size: 12px;
-}
-.wang-button-mini {
-  padding: 0 20px;
-  height: 28px;
-  line-height: 28px;
-  font-size: 12px;
-}
-// 块级元素
-.wang-button-block {
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 0;
-}
-// 图标左右外间距
-.icon-prefix {
-  margin-right: 10px;
-}
-.icon-suffix {
-  margin-left: 10px;
-}
-// loading动画
-.icon-loading {
-  animation: loading 2s infinite linear;
-}
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+
+@import './button.scss';
 </style>

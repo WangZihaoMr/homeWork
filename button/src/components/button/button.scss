@@ -1,0 +1,93 @@
+$primary: #409eff !default;
+$success: #00d100 !default;
+$warning: #e6a23c !default;
+$danger: #f56c6c !default;
+
+// 主题类型
+.wang-button-primary {
+  background-color: $primary;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $primary;
+  }
+}
+.wang-button-success {
+  background-color: $success;
+  border-color: $success;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $success;
+  }
+}
+.wang-button-warning {
+  background-color: $warning;
+  border-color: $warning;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $warning;
+  }
+}
+.wang-button-danger {
+  background-color: $danger;
+  border-color: $danger;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $danger;
+  }
+}
+// 圆角边框
+.is-round {
+  border-radius: 100px;
+}
+// 禁用属性
+.wang-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+// size button的大小
+.wang-button-medium {
+  height: 38px;
+  line-height: 38px;
+}
+.wang-button-small {
+  padding: 0 20px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+}
+.wang-button-mini {
+  padding: 0 20px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 12px;
+}
+// 块级元素
+.wang-button-block {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
+}
+// 图标左右外间距
+.icon-prefix {
+  margin-right: 10px;
+}
+.icon-suffix {
+  margin-left: 10px;
+}
+// loading动画
+.icon-loading {
+  animation: loading 2s infinite linear;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
