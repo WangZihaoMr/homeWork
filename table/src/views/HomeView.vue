@@ -9,6 +9,8 @@
       url="/name/"
       method="GET"
       ref="tableRequestRef"
+      onLoad
+      @onLoad="onLoad"
     >
       <template v-slot:operation="row">
         <!-- {{ row.data }} -->
@@ -65,6 +67,10 @@ export default {
   methods: {
     handleEditAction(id) {
       console.log(id)
+    },
+    // onLoad：子组件通过触发父组件的方法，进行数据回调
+    onLoad(res) {
+      console.log(res)
     }
   }
 }

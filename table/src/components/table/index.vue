@@ -69,7 +69,8 @@ export default {
       type: Object,
       default: () => {}
     },
-    initRequest: Boolean
+    initRequest: Boolean,
+    onLoad: Boolean
   },
   data() {
     return {
@@ -107,6 +108,9 @@ export default {
         const res = await this.$axios(requestData)
         console.log(res)
         this.tableData = res.data.data
+
+        // onLoad数据回调
+        this.onLoad && this.$emit('onLoad', res)
       } catch (error) {
         console.log(error)
       }
