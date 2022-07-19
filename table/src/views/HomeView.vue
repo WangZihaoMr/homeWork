@@ -8,7 +8,7 @@
       :params="params_1"
       url="/name/"
       method="GET"
-      init-request
+      ref="tableRequestRef"
     >
       <template v-slot:operation="row">
         <!-- {{ row.data }} -->
@@ -54,6 +54,13 @@ export default {
   },
   components: {
     wangTable: () => import('../components/table')
+  },
+  mounted() {
+    // 调用子组件的useInitRequest()方法，发送请求
+    setTimeout(() => {
+      // 异步请求，所以导致获取不到数据
+      this.$refs.tableRequestRef.useInitRequest()
+    }, 1000)
   },
   methods: {
     handleEditAction(id) {

@@ -110,6 +110,10 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    // 通过父组件调用子组件的方法
+    useInitRequest() {
+      this.loadGetData()
     }
   }
 }
