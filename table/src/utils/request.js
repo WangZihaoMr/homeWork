@@ -23,7 +23,7 @@ service.interceptors.response.use(
   }
 )
 
-// 统一请求传参问题
+// 统一传参处理
 function request(options) {
   options.method = options.method || 'GET'
   options.params =

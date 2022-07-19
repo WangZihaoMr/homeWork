@@ -60,7 +60,16 @@ export default {
     method: {
       type: String,
       default: 'GET'
-    }
+    },
+    data: {
+      type: Object,
+      default: () => {}
+    },
+    params: {
+      type: Object,
+      default: () => {}
+    },
+    initRequest: Boolean
   },
   data() {
     return {
@@ -68,7 +77,7 @@ export default {
     }
   },
   created() {
-    this.loadGetData()
+    this.initRequest && this.loadGetData()
   },
   methods: {
     async loadGetData() {
@@ -79,11 +88,23 @@ export default {
       }
 
       try {
-        // 发送请求
-        const res = await this.$axios({
+        const requestData = {
           url: this.url,
           method: this.method
-        })
+        }
+
+        // post接口传参
+        if (this.data) {
+          requestData.data = this.data
+        }
+
+        // get接口传参
+        if (this.params) {
+          requestData.params = this.data
+        }
+
+        // 发送请求
+        const res = await this.$axios(requestData)
         console.log(res)
         this.tableData = res.data.data
       } catch (error) {
