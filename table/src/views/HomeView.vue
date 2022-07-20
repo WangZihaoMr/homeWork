@@ -12,6 +12,7 @@
       onLoad
       @onLoad="onLoad"
       :format="formatData"
+      :check-list.sync="checkList"
     >
       <template v-slot:operation="row">
         <!-- {{ row.data }} -->
@@ -58,7 +59,8 @@ export default {
         }
       ],
       data_1: { name: 'jack' },
-      params_1: { name: 'rose' }
+      params_1: { name: 'rose' },
+      checkList: []
     }
   },
   components: {

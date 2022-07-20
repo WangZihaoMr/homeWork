@@ -1,6 +1,12 @@
 <template>
   <div class="table-wrapper">
-    <el-table :data="tableData" style="width: 100%">
+    <el-table
+      :data="tableData"
+      tooltip-effect="dark"
+      style="width: 100%"
+      @selection-change="handleSelectionChange"
+    >
+      style="width: 100%">
       <el-table-column v-if="index" type="index" label="序号" width="55">
       </el-table-column>
       <el-table-column v-if="selection" type="selection" width="55">
@@ -72,6 +78,10 @@ export default {
       type: Object,
       default: () => {}
     },
+    checkList: {
+      type: Array,
+      default: () => []
+    },
     initRequest: Boolean,
     onLoad: Boolean,
     format: Function
@@ -85,6 +95,12 @@ export default {
     this.initRequest && this.loadGetData()
   },
   methods: {
+    // 复选框
+    handleSelectionChange(val) {
+      // this.checkList = val    // sync 报错
+      this.$emit('update:checkList', val)
+      console.log('选中的商品', val)
+    },
     async loadGetData() {
       // 监控控制台报错
       if (!this.url) {
