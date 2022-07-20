@@ -5,6 +5,7 @@
       tooltip-effect="dark"
       style="width: 100%"
       @selection-change="handleSelectionChange"
+      @sort-change="handleSortChange"
     >
       style="width: 100%">
       <el-table-column v-if="index" type="index" label="序号" width="55">
@@ -19,6 +20,7 @@
           :width="item.width"
           :key="index"
           :render-header="item.renderHeader"
+          :sort-by="item.sortBy"
         >
           <template v-slot="scope">
             <div v-html="item && item.callback(scope.row)"></div>
@@ -30,6 +32,7 @@
           :label="item.label"
           :width="item.width"
           :render-header="item.renderHeader"
+          :sort-by="item.sortBy"
         >
           <template v-slot="scope">
             <slot :name="item.slot_name" :data="scope.row"></slot>
@@ -37,6 +40,7 @@
         </el-table-column>
         <el-table-column
           v-else
+          :sort-by="item.sortBy"
           :sortable="item.sort"
           :key="item.prop"
           :prop="item.prop"
@@ -96,6 +100,13 @@ export default {
     this.initRequest && this.loadGetData()
   },
   methods: {
+    // sort
+    handleSortChange({ column, prop, order }) {
+      console.log(column, prop, order)
+      const sortBy = column.sortBy
+      console.log(sortBy, order)
+      this.$emit('handleSortTable', { sortBy, order })
+    },
     // 复选框
     handleSelectionChange(val) {
       // this.checkList = val    // sync 报错
