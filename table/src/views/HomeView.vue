@@ -40,7 +40,13 @@ export default {
         //   }
         // },
         // { prop: 'date', label: '日期' },
-        { prop: 'name', label: '姓名' },
+        {
+          prop: 'name',
+          label: '姓名',
+          renderHeader: (h, { column, $index }) => {
+            return <div>123</div>
+          }
+        },
         // { prop: 'address', label: '地址' },
         { prop: 'gender', label: '性别' },
         {

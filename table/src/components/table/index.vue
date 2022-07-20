@@ -12,6 +12,7 @@
           :label="item.label"
           :width="item.width"
           :key="index"
+          :render-header="item.renderHeader"
         >
           <template v-slot="scope">
             <div v-html="item && item.callback(scope.row)"></div>
@@ -22,6 +23,7 @@
           :key="item.name"
           :label="item.label"
           :width="item.width"
+          :render-header="item.renderHeader"
         >
           <template v-slot="scope">
             <slot :name="item.slot_name" :data="scope.row"></slot>
@@ -33,6 +35,7 @@
           :prop="item.prop"
           :label="item.label"
           :width="item.width"
+          :render-header="item.renderHeader"
         >
         </el-table-column>
       </template>
