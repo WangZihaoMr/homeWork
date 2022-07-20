@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <el-button type="primary" @click="handleGetCheckList"
+      >测试点击获取checklist选中数据</el-button
+    >
     <wang-table
       :cloumns="cloumns"
       selection
@@ -91,6 +94,18 @@ export default {
       console.log('4', tableData)
       // return [res.data[0]]
       return tableData
+    },
+    // 点击获取checklist选中的数据，也可以通过watch监听获取
+    handleGetCheckList() {
+      console.log(this.checkList)
+    }
+  },
+  watch: {
+    checkList: {
+      handler(val) {
+        console.log(val)
+      },
+      deep: true
     }
   }
 }
