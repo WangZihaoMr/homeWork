@@ -52,7 +52,7 @@ export default {
           }
         },
         // { prop: 'address', label: '地址' },
-        { prop: 'gender', label: '性别' },
+        { prop: 'gender', label: '性别', sort: true },
         {
           prop: 'operation',
           label: '操作',

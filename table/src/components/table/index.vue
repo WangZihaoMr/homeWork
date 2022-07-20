@@ -37,6 +37,7 @@
         </el-table-column>
         <el-table-column
           v-else
+          :sortable="item.sort"
           :key="item.prop"
           :prop="item.prop"
           :label="item.label"
