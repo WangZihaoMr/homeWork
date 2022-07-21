@@ -2,7 +2,7 @@
   <div class="form-container">
     <el-form ref="form" :model="field" label-width="80px">
       <el-form-item
-        v-for="item in itemArray"
+        v-for="item in arrForm"
         :type="item.type"
         :key="item.prop"
         :label="item.label"
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import createRules from './createRules'
+
 export default {
   name: 'formView',
   props: {
@@ -33,7 +35,10 @@ export default {
     }
   },
   data() {
-    return {}
+    return { arrForm: [] }
+  },
+  beforeMount() {
+    this.arrForm = createRules(this.itemArray)
   }
 }
 </script>

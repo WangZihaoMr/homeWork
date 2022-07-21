@@ -14,23 +14,15 @@ export default {
           label: '姓名',
           type: 'input',
           prop: 'name',
-          rules: [
-            {
-              required: true,
-              message: '必填'
-            }
-          ]
+          required: true,
+          message: '请输入姓名'
         },
         {
           label: '密码',
           type: 'input',
           prop: 'password',
-          rules: [
-            {
-              required: true,
-              message: '必填'
-            }
-          ]
+          required: true,
+          message: '请输入密码'
         }
       ],
       formField: {
