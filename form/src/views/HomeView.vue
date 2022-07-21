@@ -8,6 +8,14 @@
 export default {
   name: 'HomeView',
   data() {
+    const validateName = (rule, value, callback) => {
+      if (value && value !== '10') {
+        console.log(value)
+        callback(new Error('长度最少为10'))
+      } else {
+        callback()
+      }
+    }
     return {
       itemArray: [
         {
@@ -17,7 +25,11 @@ export default {
           required: true,
           message: '姓名不能为空',
           rules: [
-            { min: 6, max: 10, message: '请输入3-10个字符', trigger: 'blur' }
+            { min: 6, max: 10, message: '请输入6-10个字符', trigger: 'change' },
+            {
+              validator: validateName,
+              trigger: 'change'
+            }
           ]
         },
         {
