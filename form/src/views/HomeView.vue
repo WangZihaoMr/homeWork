@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <wang-form :itemArray="itemArray" :field="formField"></wang-form>
+    <wang-form
+      :itemArray="itemArray"
+      :field="formField"
+      :rules="formRules"
+    ></wang-form>
   </div>
 </template>
 
@@ -24,6 +28,20 @@ export default {
       formField: {
         name: '王炸',
         password: '123456'
+      },
+      formRules: {
+        name: [
+          {
+            required: true,
+            message: '必填'
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: '必填'
+          }
+        ]
       }
     }
   },
