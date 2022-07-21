@@ -19,6 +19,20 @@ export default {
     return {
       itemArray: [
         {
+          label: '手机号',
+          type: 'input',
+          prop: 'phone',
+          required: true,
+          valueType: 'phone'
+        },
+        {
+          label: '邮箱',
+          type: 'input',
+          prop: 'email',
+          required: true,
+          valueType: 'email'
+        },
+        {
           label: '姓名',
           type: 'input',
           prop: 'name',
@@ -36,6 +50,7 @@ export default {
           label: '密码',
           type: 'input',
           prop: 'password',
+          valueType: 'password',
           required: true,
           rules: [{ min: 6, message: '密码不能为空', trigger: 'blur' }]
         },
@@ -47,6 +62,7 @@ export default {
         }
       ],
       formField: {
+        phone: '15801217452',
         name: '王炸',
         password: '123456'
       }
