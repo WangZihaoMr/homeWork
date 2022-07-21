@@ -15,14 +15,19 @@ export default {
           type: 'input',
           prop: 'name',
           required: true,
-          message: '请输入姓名'
+          message: '姓名不能为空'
         },
         {
           label: '密码',
           type: 'input',
           prop: 'password',
-          required: true,
-          message: '请输入密码'
+          required: true
+        },
+        {
+          label: '水果',
+          type: 'select',
+          prop: 'fruit',
+          required: true
         }
       ],
       formField: {

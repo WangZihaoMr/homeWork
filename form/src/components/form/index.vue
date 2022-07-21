@@ -1,16 +1,28 @@
 <template>
   <div class="form-container">
     <el-form ref="form" :model="field" label-width="80px">
-      <el-form-item
-        v-for="item in arrForm"
-        :type="item.type"
-        :key="item.prop"
-        :label="item.label"
-        :prop="item.prop"
-        :rules="item.rules"
-      >
-        <el-input v-model="field[item.prop]"></el-input>
-      </el-form-item>
+      <template v-for="item in arrForm">
+        <el-form-item
+          v-if="item.type === 'input'"
+          :type="item.type"
+          :key="item.prop"
+          :label="item.label"
+          :prop="item.prop"
+          :rules="item.rules"
+        >
+          <el-input v-model="field[item.prop]"></el-input>
+        </el-form-item>
+        <el-form-item
+          v-if="item.type === 'select'"
+          :type="item.type"
+          :key="item.prop"
+          :label="item.label"
+          :prop="item.prop"
+          :rules="item.rules"
+        >
+          <el-select v-model="field[item.prop]"></el-select>
+        </el-form-item>
+      </template>
     </el-form>
   </div>
 </template>
