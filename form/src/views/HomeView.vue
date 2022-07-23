@@ -24,7 +24,8 @@ export default {
           type: 'danger',
           size: 'small',
           text: '取消',
-          key: 'reset'
+          key: 'cancel',
+          callback: () => this.handleCancel()
         },
         {
           type: 'success',
@@ -77,6 +78,11 @@ export default {
   },
   components: {
     wangForm: () => import('../components/form')
+  },
+  methods: {
+    handleCancel() {
+      alert('表单重置完成')
+    }
   }
 }
 </script>

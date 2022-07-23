@@ -73,8 +73,8 @@ export default {
         this.handleSubmit()
         return false
       }
-      if (item.key === 'reset') {
-        this.handleSubmit()
+      if (item.key === 'cancel') {
+        this.handleCancel(item)
         return false
       }
     },
@@ -85,6 +85,13 @@ export default {
           console.log(valid)
         }
       })
+    },
+    // 取消
+    handleCancel(item) {
+      this.$refs.form.resetFields()
+      // 如果取消之后想返回信息，可以使用callback回调函数触发
+      item.callback && item.callback()
+      console.log(item)
     }
   }
 }
