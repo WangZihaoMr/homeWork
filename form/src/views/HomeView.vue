@@ -4,6 +4,7 @@
       :itemArray="itemArray"
       :field="formField"
       :formButtons="formButtons"
+      :before-submit="handleBeforeSubmit"
     ></wang-form>
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
           type: 'primary',
           size: 'mini',
           text: '提交',
-          key: 'submit'
+          key: 'submit',
+          loading: false
         },
         {
           type: 'danger',
@@ -45,34 +47,34 @@ export default {
         {
           label: '邮箱',
           type: 'input',
-          prop: 'email',
+          // prop: 'email',
           required: true,
           valueType: 'email'
         },
         {
           label: '姓名',
           type: 'input',
-          prop: 'name',
+          // prop: 'name',
           required: true
         },
         {
           label: '密码',
           type: 'input',
-          prop: 'password',
+          // prop: 'password',
           valueType: 'password',
           required: true
-        },
-        {
-          label: '水果',
-          type: 'select',
-          prop: 'fruit',
-          required: true
         }
+        // {
+        //   label: '水果',
+        //   type: 'select',
+        //   prop: 'fruit',
+        //   required: true
+        // }
       ],
       formField: {
-        phone: '',
-        name: '',
-        password: ''
+        phone: '15801217452',
+        name: '666666',
+        password: '1111111'
       }
     }
   },
@@ -82,6 +84,16 @@ export default {
   methods: {
     handleCancel() {
       alert('表单重置完成')
+    },
+    // loading提交回调
+    handleBeforeSubmit() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+          // eslint-disable-next-line prefer-promise-reject-errors
+          // reject()
+        }, 2000)
+      })
     }
   }
 }

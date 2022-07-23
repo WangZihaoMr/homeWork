@@ -29,6 +29,7 @@
           :key="item.key"
           :type="item.type"
           :size="item.size"
+          :loading="item.loading"
           @click="handleButton(item)"
           >{{ item.text }}</el-button
         >
@@ -58,7 +59,8 @@ export default {
     rules: {
       type: Object,
       default: () => {}
-    }
+    },
+    beforeSubmit: Function
   },
   data() {
     return { arrForm: [] }
@@ -70,7 +72,7 @@ export default {
     handleButton(item) {
       console.log(item)
       if (item.key === 'submit') {
-        this.handleSubmit()
+        this.handleSubmit(item)
         return false
       }
       if (item.key === 'cancel') {
@@ -79,9 +81,23 @@ export default {
       }
     },
     // 提交
-    handleSubmit() {
+    handleSubmit(item) {
       this.$refs.form.validate((valid) => {
+        this.$set(item, 'loading', true)
         if (valid) {
+          if (typeof this.beforeSubmit === 'function') {
+            console.log(1)
+            this.beforeSubmit()
+              .then((res) => {
+                this.$set(item, 'loading', false)
+                console.log('成功')
+              })
+              .catch((error) => {
+                console.log(error)
+                this.$set(item, 'loading', false)
+                console.log('成功')
+              })
+          }
           console.log(valid)
         }
       })
