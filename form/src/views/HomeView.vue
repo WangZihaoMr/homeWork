@@ -12,25 +12,17 @@
 export default {
   name: 'HomeView',
   data() {
-    const validateName = (rule, value, callback) => {
-      if (value && value !== '10') {
-        console.log(value)
-        callback(new Error('长度最少为10'))
-      } else {
-        callback()
-      }
-    }
     return {
       formButtons: [
         {
           type: 'primary',
-          size: 'large',
+          size: 'mini',
           text: '提交',
           key: 'submit'
         },
         {
           type: 'danger',
-          size: 'large',
+          size: 'small',
           text: '取消',
           key: 'reset'
         },
@@ -60,23 +52,14 @@ export default {
           label: '姓名',
           type: 'input',
           prop: 'name',
-          required: true,
-          message: '姓名不能为空',
-          rules: [
-            { min: 6, max: 10, message: '请输入6-10个字符', trigger: 'change' },
-            {
-              validator: validateName,
-              trigger: 'change'
-            }
-          ]
+          required: true
         },
         {
           label: '密码',
           type: 'input',
           prop: 'password',
           valueType: 'password',
-          required: true,
-          rules: [{ min: 6, message: '密码不能为空', trigger: 'blur' }]
+          required: true
         },
         {
           label: '水果',
@@ -86,9 +69,9 @@ export default {
         }
       ],
       formField: {
-        phone: '15801217452',
-        name: '王炸',
-        password: '123456'
+        phone: '',
+        name: '',
+        password: ''
       }
     }
   },

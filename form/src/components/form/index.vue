@@ -29,6 +29,7 @@
           :key="item.key"
           :type="item.type"
           :size="item.size"
+          @click="handleButton(item)"
           >{{ item.text }}</el-button
         >
       </el-form-item>
@@ -64,6 +65,27 @@ export default {
   },
   beforeMount() {
     this.arrForm = createRules(this.itemArray)
+  },
+  methods: {
+    handleButton(item) {
+      console.log(item)
+      if (item.key === 'submit') {
+        this.handleSubmit()
+        return false
+      }
+      if (item.key === 'reset') {
+        this.handleSubmit()
+        return false
+      }
+    },
+    // 提交
+    handleSubmit() {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          console.log(valid)
+        }
+      })
+    }
   }
 }
 </script>
