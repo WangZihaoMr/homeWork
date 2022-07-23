@@ -1,3 +1,9 @@
+import {
+  validatePhone,
+  validatePassword,
+  validateEmail
+} from '../../utils/validate'
+
 const createRules = (data) => {
   console.log('数据', data)
   data.forEach((item) => {
@@ -15,38 +21,18 @@ const createRules = (data) => {
 
     // 校验手机号
     if (item.valueType && item.valueType === 'phone') {
-      const regPhone = /^1[3456789]d{9}$/
-      const validatePhone = (rule, value, callback) => {
-        if (value && regPhone.test(value)) {
-          callback()
-        } else {
-          callback(new Error('请输入合法的手机号'))
-        }
-      }
       const rule = { validator: validatePhone, trigger: 'change' }
       ruleArray.push(rule)
     }
 
     // 校验密码
     if (item.valueType && item.valueType === 'password') {
-      const regPassword = /^[a-zA-Z0-9]{6-18}/
-      const validatePassword = (rule, value, callback) => {
-        return regPassword.test(value)
-      }
       const rule = { validator: validatePassword, trigger: 'change' }
       ruleArray.push(rule)
     }
 
     // 校验邮箱
     if (item.valueType && item.valueType === 'email') {
-      const regEmail = /1/
-      const validateEmail = (rule, value, callback) => {
-        if (value && regEmail.test(value)) {
-          callback()
-        } else {
-          callback(new Error('请输入合法邮箱地址'))
-        }
-      }
       const rule = { validator: validateEmail, trigger: 'change' }
       ruleArray.push(rule)
     }
