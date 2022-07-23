@@ -23,6 +23,15 @@
           <el-select v-model="field[item.prop]"></el-select>
         </el-form-item>
       </template>
+      <el-form-item>
+        <el-button
+          v-for="item in formButtons"
+          :key="item.key"
+          :type="item.type"
+          :size="item.size"
+          >{{ item.text }}</el-button
+        >
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -34,6 +43,10 @@ export default {
   name: 'formView',
   props: {
     itemArray: {
+      type: Array,
+      default: () => []
+    },
+    formButtons: {
       type: Array,
       default: () => []
     },

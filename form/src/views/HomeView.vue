@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <wang-form :itemArray="itemArray" :field="formField"></wang-form>
+    <wang-form
+      :itemArray="itemArray"
+      :field="formField"
+      :formButtons="formButtons"
+    ></wang-form>
   </div>
 </template>
 
@@ -17,6 +21,26 @@ export default {
       }
     }
     return {
+      formButtons: [
+        {
+          type: 'primary',
+          size: 'large',
+          text: '提交',
+          key: 'submit'
+        },
+        {
+          type: 'danger',
+          size: 'large',
+          text: '取消',
+          key: 'reset'
+        },
+        {
+          type: 'success',
+          size: 'large',
+          text: '下一个',
+          key: 'next'
+        }
+      ],
       itemArray: [
         {
           label: '手机号',
