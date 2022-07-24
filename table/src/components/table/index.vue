@@ -57,7 +57,16 @@
 </template>
 
 <script>
+// 读取文件（webpack）
 const files = require.context('../control', true, /index.vue$/i)
+console.log(files.keys())
+files.keys().forEach((item) => {
+  const key = item.split('/')
+  const name = key[1]
+  const component = files(item).default
+  console.log(name)
+  console.log(component)
+})
 console.log('files', files)
 export default {
   name: 'tableView',
