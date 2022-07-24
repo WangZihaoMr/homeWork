@@ -1,11 +1,11 @@
 <template>
   <div class="">
-    <el-select v-model="val" @input="handleInput">
+    <el-select v-model="val" @change="handleChangeEvent(val)">
       <el-option
         v-for="item in options"
-        :key="item.value"
-        :value="item.value"
-        :label="item.label"
+        :key="item[props.value]"
+        :value="item[props.value]"
+        :label="item[props.label]"
       ></el-option>
     </el-select>
   </div>
@@ -20,7 +20,7 @@ export default {
       default: () => ({})
     },
     value: {
-      type: String,
+      type: [String, Number],
       default: ''
     }
   },
@@ -28,6 +28,7 @@ export default {
     config: {
       handler(val) {
         this.initOptions()
+        this.initProps()
       },
       immediate: true,
       deep: true
@@ -43,12 +44,16 @@ export default {
   data() {
     return {
       val: '',
-      options: []
+      options: [],
+      props: {
+        label: 'label',
+        value: 'value'
+      }
     }
   },
   methods: {
-    handleInput() {
-      this.$emit('update:value', this.val)
+    handleChangeEvent(val) {
+      this.$emit('update:value', val)
     },
     initOptions() {
       const options = this.config.options
@@ -56,6 +61,12 @@ export default {
         this.options = options
         console.log('selectOptions', this.options)
       }
+    },
+    initProps() {
+      const props = this.config.props
+      const keys = Object.keys(this.props)
+      console.log(props)
+      console.log(keys)
     }
   }
 }
