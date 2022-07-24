@@ -38,6 +38,29 @@ export default {
       ],
       itemArray: [
         {
+          label: '教室',
+          type: 'select',
+          prop: 'class_name',
+          options: [
+            {
+              label: '一班',
+              value: 1
+            },
+            {
+              label: '二班',
+              value: 2
+            },
+            {
+              label: '三班',
+              value: 3
+            },
+            {
+              label: '四班',
+              value: 4
+            }
+          ]
+        },
+        {
           label: '手机号',
           type: 'input',
           prop: 'phone',

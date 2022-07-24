@@ -3,7 +3,6 @@
     <el-form ref="form" :model="field" label-width="80px">
       <template v-for="item in arrForm">
         <el-form-item
-          v-if="item.type === 'input'"
           :type="item.type"
           :key="item.prop"
           :label="item.label"
