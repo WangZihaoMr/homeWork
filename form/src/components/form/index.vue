@@ -10,9 +10,14 @@
           :prop="item.prop"
           :rules="item.rules"
         >
-          <el-input v-model="field[item.prop]"></el-input>
+          <!-- <el-input v-model="field[item.prop]"></el-input> -->
+          <component
+            :value="field[item.prop]"
+            :config="item"
+            :is="!item.type ? `com-text` : `com-${item.type}`"
+          ></component>
         </el-form-item>
-        <el-form-item
+        <!-- <el-form-item
           v-if="item.type === 'select'"
           :type="item.type"
           :key="item.prop"
@@ -21,7 +26,7 @@
           :rules="item.rules"
         >
           <el-select v-model="field[item.prop]"></el-select>
-        </el-form-item>
+        </el-form-item> -->
       </template>
       <el-form-item>
         <el-button
@@ -40,9 +45,25 @@
 
 <script>
 import createRules from './createRules'
-
+const modules = {}
+// 读取文件（webpack）
+const files = require.context('../control', true, /index.vue$/i)
+// console.log(files.keys())
+files.keys().forEach((item) => {
+  const key = item.split('/')
+  const name = key[1]
+  const component = files(item).default
+  modules[`com-${name}`] = files(item).default
+  // console.log(name)
+  console.log(component)
+})
+console.log('modules', modules)
+// console.log('files', files)
 export default {
   name: 'formView',
+  components: {
+    ...modules
+  },
   props: {
     itemArray: {
       type: Array,
