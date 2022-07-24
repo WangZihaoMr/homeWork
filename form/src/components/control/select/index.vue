@@ -1,9 +1,12 @@
 <template>
   <div class="">
     <el-select v-model="val" @input="handleInput">
-      <option v-for="(item, index) in options" :key="index" :value="item.value">
-        {{ item.label }}
-      </option>
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :value="item.value"
+        :label="item.label"
+      ></el-option>
     </el-select>
   </div>
 </template>
