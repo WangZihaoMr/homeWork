@@ -57,6 +57,7 @@
 </template>
 
 <script>
+const modules = {}
 // 读取文件（webpack）
 const files = require.context('../control', true, /index.vue$/i)
 console.log(files.keys())
@@ -64,12 +65,19 @@ files.keys().forEach((item) => {
   const key = item.split('/')
   const name = key[1]
   const component = files(item).default
+  modules[`com-${name}`] = files(item).default
   console.log(name)
   console.log(component)
 })
+console.log(modules)
 console.log('files', files)
 export default {
   name: 'tableView',
+  components: {
+    // comFunction: () => import('../control/function/index.vue'),
+    // comImage: () => import('../control/image/index.vue'),
+    // comText: () => import('../control/text/index.vue')
+  },
   props: {
     cloumns: {
       type: Array,
@@ -156,10 +164,10 @@ export default {
         let data = res.data
         if (this.format && typeof this.format === 'function') {
           data = this.format(res.data)
-          console.log('123', data)
+          // console.log('123', data)
         }
         this.tableData = data
-        console.log('111', this.tableData)
+        // console.log('111', this.tableData)
 
         // onLoad数据回调
         this.onLoad && this.$emit('onLoad', res)
