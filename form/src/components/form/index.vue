@@ -12,7 +12,7 @@
         >
           <!-- <el-input v-model="field[item.prop]"></el-input> -->
           <component
-            :value="field[item.prop]"
+            :value.sync="field[item.prop]"
             :config="item"
             :is="!item.type ? `com-text` : `com-${item.type}`"
           ></component>
