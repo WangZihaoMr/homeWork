@@ -42,25 +42,25 @@ export default {
           type: 'select',
           prop: 'class_name',
           props: {
-            label: 'name',
-            value: 'id'
+            label: 'a',
+            value: 'b'
           },
           options: [
             {
-              label: '一班',
-              value: 1
+              a: '一班',
+              b: 1
             },
             {
-              label: '二班',
-              value: 2
+              a: '二班',
+              b: 2
             },
             {
-              label: '三班',
-              value: 3
+              a: '三班',
+              b: 3
             },
             {
-              label: '四班',
-              value: 4
+              a: '四班',
+              b: 4
             }
           ]
         },

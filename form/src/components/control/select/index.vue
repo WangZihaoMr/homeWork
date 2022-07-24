@@ -65,8 +65,18 @@ export default {
     initProps() {
       const props = this.config.props
       const keys = Object.keys(this.props)
-      console.log(props)
-      console.log(keys)
+      // console.log(props)
+      // console.log(keys)
+      if (
+        props &&
+        Object.prototype.toString.call(props) === '[object Object]'
+      ) {
+        for (const key in props) {
+          if (keys.includes(key)) {
+            this.props[key] = props[key]
+          }
+        }
+      }
     }
   }
 }
