@@ -14,7 +14,6 @@
       </el-table-column>
       <template v-for="(item, index) in cloumns">
         <el-table-column
-          v-if="item.type === 'function'"
           :prop="item.title"
           :label="item.label"
           :width="item.width"
@@ -23,10 +22,17 @@
           :sort-by="item.sortBy"
         >
           <template v-slot="scope">
-            <div v-html="item && item.callback(scope.row)"></div>
+            <component
+              :data="scope.row"
+              :index="index"
+              :config="item"
+              :prop="item.prop"
+              :is="!item.type ? `com-text` : `com-${item.type}`"
+            ></component>
+            <!-- <div v-html="item && item.callback(scope.row)"></div> -->
           </template>
         </el-table-column>
-        <el-table-column
+        <!-- <el-table-column
           v-if="item.type === 'slot'"
           :key="item.name"
           :label="item.label"
@@ -48,7 +54,7 @@
           :width="item.width"
           :render-header="item.renderHeader"
         >
-        </el-table-column>
+        </el-table-column> -->
       </template>
       <!-- <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
       <el-table-column prop="address" label="地址"> </el-table-column> -->
@@ -60,20 +66,21 @@
 const modules = {}
 // 读取文件（webpack）
 const files = require.context('../control', true, /index.vue$/i)
-console.log(files.keys())
+// console.log(files.keys())
 files.keys().forEach((item) => {
   const key = item.split('/')
   const name = key[1]
   const component = files(item).default
   modules[`com-${name}`] = files(item).default
-  console.log(name)
+  // console.log(name)
   console.log(component)
 })
-console.log(modules)
-console.log('files', files)
+// console.log(modules)
+// console.log('files', files)
 export default {
   name: 'tableView',
   components: {
+    ...modules
     // comFunction: () => import('../control/function/index.vue'),
     // comImage: () => import('../control/image/index.vue'),
     // comText: () => import('../control/text/index.vue')

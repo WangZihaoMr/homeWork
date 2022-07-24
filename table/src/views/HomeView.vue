@@ -34,32 +34,27 @@ export default {
   data() {
     return {
       cloumns: [
-        // {
-        //   prop: 'title',
-        //   label: '标题',
-        // ,
-        //   type: 'function',
-        //   callback: (row) => {
-        //     return `${row.title}`
-        //   }
-        // },
-        // { prop: 'date', label: '日期' },
         {
-          prop: 'name',
           label: '姓名',
-          renderHeader: (h, { column, $index }) => {
-            return <div>123</div>
+          prop: 'name',
+          callback: () => {
+            return 123
           }
         },
-        // { prop: 'address', label: '地址' },
-        { prop: 'gender', label: '性别', sort: true, sortBy: 'yyds' },
         {
-          prop: 'operation',
-          label: '操作',
-          type: 'slot',
-          slot_name: 'operation',
-          width: '260'
+          label: '创建时间',
+          prop: 'create_date',
+          callback: () => {
+            return 123
+          }
         }
+        // {
+        //   prop: 'operation',
+        //   label: '操作',
+        //   type: 'slot',
+        //   slot_name: 'operation',
+        //   width: '260'
+        // }
       ],
       data_1: { name: 'jack' },
       params_1: { name: 'rose' },

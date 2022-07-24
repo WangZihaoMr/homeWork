@@ -1,16 +1,29 @@
 <template>
-  <div class="">function</div>
+  <div v-html="config.callback && config.callback(data)">
+    {{ data }}
+    {{ config }}
+    {{ prop }}
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'functionView',
-  components: {},
-  data() {
-    return {}
-  },
-  created() {},
-  methods: {}
+  name: 'index',
+  props: {
+    data: {
+      type: Object,
+      default: () => ({})
+    },
+    config: {
+      type: Object,
+      default: () => ({})
+    },
+    prop: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
-<style scoped lang="scss"></style>
+
+<style scoped></style>
