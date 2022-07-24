@@ -57,6 +57,8 @@
 </template>
 
 <script>
+const files = require.context('../control', true, /index.vue$/i)
+console.log('files', files)
 export default {
   name: 'tableView',
   props: {
