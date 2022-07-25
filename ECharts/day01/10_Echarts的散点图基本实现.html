@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>10</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var axisData = [
+      { height: 180, weight: 40 },
+      { height: 160, weight: 40 },
+      { height: 160, weight: 40 },
+      { height: 160, weight: 40 },
+      { height: 150, weight: 40 },
+      { height: 150, weight: 50 },
+      { height: 150, weight: 60 },
+      { height: 190, weight: 60 },
+      { height: 190, weight: 60 },
+      { height: 190, weight: 60 },
+      { height: 280, weight: 60 },
+      { height: 280, weight: 90 },
+      { height: 280, weight: 90 },
+      { height: 180, weight: 90 },
+      { height: 180, weight: 00 },
+      { height: 170, weight: 00 },
+      { height: 170, weight: 00 },
+      { height: 180, weight: 60 },
+      { height: 180, weight: 60 },
+      { height: 120, weight: 20 },
+      { height: 120, weight: 20 },
+      { height: 120, weight: 20 },
+      { height: 120, weight: 60 },
+      { height: 180, weight: 60 },
+      { height: 180, weight: 60 },
+      { height: 100, weight: 60 },
+      { height: 100, weight: 60 },
+    ]
+    var newArr = []
+    for (let i = 0; i < axisData.length; i++) {
+      let height = axisData[i].height;
+      let weight = axisData[i].weight;
+      let arr = [height, weight]
+      newArr.push(arr)
+    }
+    console.log(axisData)
+    console.log(newArr)
+    var mCharts = echarts.init(document.getElementById('box'))
+    // xAxis: x轴/类目轴   yAxis: y轴/数值轴    value:数值  series:系列列表   series中的type决定图标的类型: bar树状图、pie饼图、line:折线图
+    var option = {
+      xAxis: {
+        type: 'value',
+        scale: true
+      },
+      yAxis: {
+        type: 'value',
+        scale: true
+      },
+      series: [{
+        name: '语文',
+        type: 'scatter',
+        data: newArr
+      }]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>

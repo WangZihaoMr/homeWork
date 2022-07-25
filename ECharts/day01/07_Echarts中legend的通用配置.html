@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>06</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var mCharts = echarts.init(document.getElementById("box"));
+    var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    var yDataArr1 = [88, 92, 63, 77, 94, 80, 72, 86]
+    var yDataArr2 = [12, 34, 56, 54, 78, 90, 87, 56]
+    var option = {
+      toolbox: {
+        feature: {
+          saveAsImage: {}, // 下载图片
+          dataView: {}, // 展示数据表，可编辑
+          restore: {}, // 重置数据
+          dataZoom: {}, // 选中区域缩放
+          magicType: {  // 动态类型切换
+            type: ['bar', 'line']
+          },
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: xDataArr
+      },
+      yAxis: {
+        type: 'value'
+      },
+      legend: {
+        data: ['数学', '体育']
+      },
+      series: [
+        {
+          name: '数学',
+          type: 'bar',
+          data: yDataArr1
+        },
+        {
+          name: '体育',
+          type: 'bar',
+          data: yDataArr2
+        },
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>

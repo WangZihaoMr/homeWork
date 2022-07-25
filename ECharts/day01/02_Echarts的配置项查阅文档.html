@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var mCharts = echarts.init(document.getElementById('box'))
+    // title:标题   textStyle:文本的样式
+    var option = {
+      title: {
+        text: '王子豪',
+        link: 'https://www.baidu.com',
+        target: 'blank'
+      },
+      textStyle: {
+        color: 'black',
+        fontStyle: 'italic',
+        fontWeight: 'lighter',
+        fontFamily: 'Microsoft YaHei',
+        fontSize: '22px'
+      },
+      xAxis: {
+        type: 'category',
+        data: ['小王', '小郭', '小蓝', '小红', '小子']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        name: '语文',
+        type: 'bar',
+        data: [70, 92, 87, 100, 80]
+      }]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>

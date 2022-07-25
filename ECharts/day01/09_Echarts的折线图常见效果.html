@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>09</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    // boundaryGap: 缺点当一组数据的数值相差不大时， 显示视觉将不明显， 在y轴中设置scale为true即可解决,scale摆脱0值起始
+    // stack: 'all',两张折线图分离
+    var mCharts = echarts.init(document.getElementById('box'))
+    var xDataArr1 = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+    // var yDataArr2 = [3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+    var yDataArr2 = [3000, 2500, 2200, 3003, 2600, 3005, 3006, 2470, 3008, 3009, 3007, 3005]
+    var yDataArr3 = [2000, 2550, 2560, 2400, 2800, 3000, 2720, 2870, 2480, 2400, 2950, 2540]
+    var option = {
+      xAxis: {
+        type: 'category',
+        data: xDataArr1,
+        // boundaryGap: false,
+      },
+      yAxis: {
+        type: 'value',
+        // scale: true
+      },
+      series: [
+        {
+          name: '康师傅',
+          type: 'line',
+          data: yDataArr2,
+          stack: 'all',
+          markPoint: {
+            data: [
+              {
+                type: 'max',
+                name: '最大值'
+              },
+              {
+                type: 'min',
+                name: '最小值'
+              },
+            ]
+          },
+          markLine: {
+            data: [
+              {
+                type: 'average',
+                name: '平均值'
+              }
+            ]
+          },
+          // smooth: true,
+          lineStyle: {
+            color: '#5470c6',
+            type: 'dashed'
+          },
+          markArea: {
+            data: [
+              [
+                { xAxis: '1月' },
+                { xAxis: '2月' }
+              ],
+              [
+                { xAxis: '7月' },
+                { xAxis: '8月' }
+              ]
+            ]
+          },
+          // 阴影填充
+          areaStyle: {
+            // color: 'pink'
+          }
+        },
+        {
+          name: '薪资统计表',
+          type: 'line',
+          data: yDataArr3,
+          stack: 'all',
+          areaStyle: {},
+        }
+      ],
+      // 鼠标移入显示信息
+      tooltip: {
+        trigger: 'axis',
+      },
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>
