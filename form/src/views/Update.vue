@@ -39,6 +39,13 @@ export default {
     },
     // 点击上传   两件事情：1、判断文件的大小 2、判断文件的类型
     async handleSendFile() {
+      if (this.files === '') {
+        this.$message({
+          message: '请选择要上传的文件！',
+          type: 'warning'
+        })
+        return false
+      }
       // 文件大小
       const size = this.files.size
       // 限制的文件大小 (限传2兆)

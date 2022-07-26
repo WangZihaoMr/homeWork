@@ -1,3 +1,7 @@
+/**
+ * @author YangLing
+ * @date 2022/7/19 12:55
+ */
 // 导入axios
 import axios from 'axios'
 
@@ -11,19 +15,25 @@ const service = axios.create({
 })
 
 // 请求拦截器
-service.interceptors.request.use((config) => {
-  console.log(config)
-  return config
-}, (error) => {
-  return Promise.reject(error)
-})
+service.interceptors.request.use(
+  (config) => {
+    console.log(config)
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
 // 响应拦截器
-service.interceptors.response.use((response) => {
-  return response
-}, (error) => {
-  return Promise.reject(error)
-})
+service.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
 // 统一了传参处理
 const request = (options) => {

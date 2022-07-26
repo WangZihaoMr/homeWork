@@ -9,12 +9,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 // 引入axios实例
 import request from './utils/request'
-Vue.prototype.$axios = request
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 
+Vue.prototype.$axios = request
 new Vue({
   router,
   store,
