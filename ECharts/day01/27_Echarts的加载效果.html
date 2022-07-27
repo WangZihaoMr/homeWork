@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>27</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var mCharts = echarts.init(document.getElementById('box'))
+    mCharts.showLoading()
+
+    $.get("json/person.json", function (ret) {
+      console.log('ret', ret)
+      mCharts.hideLoading()
+      var newArr = []
+      for (let i = 0; i < ret.length; i++) {
+        let height = ret[i].height;
+        let weight = ret[i].weight;
+        let arr = [height, weight]
+        newArr.push(arr)
+      }
+      console.log(ret)
+      console.log(newArr)
+      var option = {
+        xAxis: {
+          type: 'value',
+          scale: true
+        },
+        yAxis: {
+          type: 'value',
+          scale: true
+        },
+        series: [{
+          name: '语文',
+          type: 'scatter',
+          data: newArr
+        }]
+      }
+      mCharts.setOption(option)
+    })
+  </script>
+</body>
+
+</html>

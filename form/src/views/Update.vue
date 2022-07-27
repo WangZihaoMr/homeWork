@@ -12,11 +12,16 @@
       <el-button type="success" size="mini" @click="handleClick"
         >选择文件</el-button
       >
-      <el-button type="primary" size="mini" @click="handleSendFile"
+      <el-button
+        type="primary"
+        size="mini"
+        :loading="loading"
+        @click="handleSendFile"
         >上传</el-button
       >
       <div class="update-info" v-if="files">文件：{{ files.name }}</div>
     </div>
+    <img :src="imgUrl" width="100" />
   </div>
 </template>
 
@@ -24,7 +29,9 @@
 export default {
   data() {
     return {
-      files: ''
+      files: '',
+      imgUrl: '',
+      loading: false
     }
   },
   methods: {
@@ -37,8 +44,9 @@ export default {
       this.files = e.target.files[0]
       console.log(e.target.files[0])
     },
-    // 点击上传   两件事情：1、判断文件的大小 2、判断文件的类型
+    // 点击上传   需要做两件事情：1、判断文件的大小 2、判断文件的类型
     async handleSendFile() {
+      this.loading = true
       if (this.files === '') {
         this.$message({
           message: '请选择要上传的文件！',
@@ -48,7 +56,7 @@ export default {
       }
       // 文件大小
       const size = this.files.size
-      // 限制的文件大小 (限传2兆)
+      // 限制的文件大小 (限制2兆)
       const targetSize = 1024 * 1024 * 2
 
       // 判断上传文件大小
@@ -69,7 +77,7 @@ export default {
       const formData = new FormData()
       formData.append('file', this.files)
       formData.append('filename', this.files.name)
-      console.log('111===>', this.files, this.files.name)
+
       // 发送上传文件请求
       const res = await this.$axios({
         url: '/api/upload_single',
@@ -79,6 +87,8 @@ export default {
         },
         data: formData
       })
+      this.loading = false
+      this.imgUrl = res.data.servicePath
       console.log(res)
     }
   }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>16</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var mCharts = echarts.init(document.getElementById('box'))
+    // 获取地图数据
+    $.get('json/map/china.json', function (res) {
+      console.log(res)
+      // 数据注册：chinaMap是res数据的别名
+      echarts.registerMap('chinaMap', res)
+      // 配置数据
+      var option = {
+        geo: {  // geo
+          type: 'map',
+          map: 'chinaMap', // chinaMap需要与数据注册保持一致
+          label: {
+            show: true
+          },
+          // 鼠标缩放拖动
+          roam: true,
+          // 初始化比例
+          zoom: 2,
+          // 中心点
+          center: [113.54909, 22.198951]
+        },
+      }
+      mCharts.setOption(option)
+    })
+  </script>
+</body>
+
+</html>

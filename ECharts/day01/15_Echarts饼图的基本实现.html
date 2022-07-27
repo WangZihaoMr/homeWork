@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>15</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var mCharts = echarts.init(document.getElementById('box'))
+    // 饼图注意点：没有x轴和y轴   并且每一个对象中：需要设置name和value值
+    var pieData = [
+      { name: '淘宝', value: 11231 },
+      { name: '京东', value: 22673 },
+      { name: '唯品会', value: 6123 },
+      { name: '1号店', value: 8989 },
+      { name: '聚美优品', value: 6700 }
+    ]
+    var option = {
+      series: [{
+        type: 'pie',
+        data: pieData,
+        label: {
+          formatter: function (arg) {
+            // console.log(arg)
+            return arg.name + '平台' + arg.value + '元\n' + '占比：' + arg.percent + '%'
+          },
+        },
+        roseType: 'radius', // 南丁格尔图：半径是不一样的
+        // radius: 20,  // 饼图的半径
+        radius: '20%', // 百分比的半径：是参照宽度和高度较小的那一部分来进行百分比设置
+        radius: ['20%', '60%'], // 第一个值为内圆的半径；第二个值为外圆的半径
+        selectedMode: 'multiple',  // single  multiple  选中模式
+        selectedOffset: 30    // 选中偏移量
+      }]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>

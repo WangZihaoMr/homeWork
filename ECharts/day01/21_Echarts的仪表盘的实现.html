@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>21</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    var mCharts = echarts.init(document.getElementById('box'))
+    var option = {
+      series: [
+        {
+          type: 'gauge', // 图表的类型   --- 仪表盘
+          data: [
+            {
+              value: 97,
+              itemStyle: {  // 指针的样式
+                color: 'pink' // 指针的颜色
+              }
+            },
+            {
+              value: 85,
+              itemStyle: {
+                color: 'gray'
+              }
+            },
+          ],
+          min: 50,
+          max: 120
+        }
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>

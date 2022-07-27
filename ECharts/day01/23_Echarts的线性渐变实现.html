@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>23</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <script src="./theme/vintage.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    // Echarts内置主题:    light    dark
+    //  var mCharts = echarts.init(document.getElementById('box'))
+    var mCharts = echarts.init(document.getElementById('box'))
+    var option = {
+      xAxis: {
+        type: 'category',
+        data: ['小王', '小郭', '小蓝', '小红', '小子']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          type: 'bar',
+          data: [70, 92, 87, 100, 80],
+          itemStyle: {
+            color: {
+              type: 'linears', // 线性渐变
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                {
+                  offset: 0, color: 'red' // 0%处为红色
+                },
+                {
+                  offset: 1, color: 'blue' // 100%处为蓝色
+                },
+              ]
+            }
+          }
+        },
+      ],
+
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>
