@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>28</title>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <button id="editBtn">修改数据</button>
+  <button id="addBtn">增加数据</button>
+  <script>
+    var mCharts = echarts.init(document.getElementById("box"));
+    var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+    var option = {
+      xAxis: {
+        type: 'category',
+        data: xDataArr
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        name: '数学',
+        type: 'bar',
+        data: yDataArr,
+      }]
+    }
+    mCharts.setOption(option)
+    // 修改数据
+    var editBtn = document.getElementById("editBtn");
+    editBtn.onclick = function () {
+      var newDataArr = [88, 100, 63, 77, 94, 80, 72, 86]
+      var option = {
+        series: [{
+          data: newDataArr,
+        }]
+      }
+      mCharts.setOption(option)
+    }
+    // 增加数据
+    var addBtn = document.getElementById("addBtn");
+    addBtn.onclick = function () {
+      xDataArr.push('我的天呐')
+      yDataArr.push('100')
+      var option = {
+        xAxis: {
+          type: 'category',
+          data: xDataArr
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          name: '数学',
+          type: 'bar',
+          data: yDataArr,
+        }]
+      }
+      mCharts.setOption(option)
+    }
+  </script>
+</body>
+
+</html>
